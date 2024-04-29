@@ -1,0 +1,109 @@
+import logo from './logo.svg';
+import './App.css';
+
+import { useState } from 'react';
+
+function App() {
+  const [eredmeny,eredmenybeallit] =useState(0);
+  
+  const func = (ertek) =>{
+      if(eredmeny == 0){    
+          eredmenybeallit(ertek);      
+        return;
+      }
+
+      if(ertek ==  '='){
+        try{
+          eredmenybeallit(eval(eredmeny));
+        }catch(Err){
+          alert("Hibás szamolás");
+          eredmenybeallit(0);
+        }     
+        return;
+      }
+
+      if(ertek == 'x^2'){
+        eredmenybeallit(Math.pow(eredmeny,2));
+        return;
+      }
+
+
+
+      
+      if(ertek == 'clear'){
+        eredmenybeallit('');
+        return;
+      }
+
+      if(ertek == 'pi'){
+        eredmenybeallit(eredmeny*3.141592653589793);
+        return;
+      }
+
+      if(ertek == 'gyök'){
+        eredmenybeallit(Math.sqrt(eredmeny));
+        return;
+      }
+
+
+      if(ertek == '!'){
+        for (let i = 1; i <= ertek; i++) {
+            eredmeny *= i; 
+        }
+        eredmenybeallit(eredmeny);
+        return;
+      }
+
+
+      eredmenybeallit(eredmeny.toString()+ertek.toString());
+     
+  }
+
+ 
+  return (
+    <><div className='container'>
+      <input type="text" disabled value={eredmeny}/>
+      <div className="">
+        <div className="d-flex">
+            <button onClick={(event) => func(event.target.innerHTML)}>9</button>
+            <button onClick={(event) => func(event.target.innerHTML)}>8</button>
+            <button onClick={(event) => func(event.target.innerHTML)}>7</button>
+        </div>
+        <div className="d-flex">
+            <button onClick={(event) => func(event.target.innerHTML)}>6</button>
+            <button onClick={(event) => func(event.target.innerHTML)}>5</button>
+            <button onClick={(event) => func(event.target.innerHTML)}>4</button>
+        </div>
+        <div className="d-flex">
+            <button onClick={(event) => func(event.target.innerHTML)}>3</button>
+            <button onClick={(event) => func(event.target.innerHTML)}>2</button>
+            <button onClick={(event) => func(event.target.innerHTML)}>1</button>
+        </div>
+        <div className="d-flex">
+              <button onClick={(event) => func(event.target.innerHTML)}>0</button>
+              <button onClick={(event) => func(event.target.innerHTML)}>+</button>
+              <button onClick={(event) => func(event.target.innerHTML)}>-</button>
+        </div>
+
+        <div className="d-flex">
+              <button onClick={(event) => func(event.target.innerHTML)}>*</button>
+              <button onClick={(event) => func(event.target.innerHTML)}>/</button>
+              <button onClick={(event) => func(event.target.innerHTML)}>=</button>
+              <button onClick={(event) => func(event.target.innerHTML)}>x^2</button>                                          
+        </div>
+      </div>
+
+
+      <div className="d-flex">
+              <button onClick={(event) => func(event.target.innerHTML)}>pi</button>
+              <button onClick={(event) => func(event.target.innerHTML)}>gyök</button>
+              <button onClick={(event) => func(event.target.innerHTML)}>!</button>
+              <button onClick={(event) => func(event.target.innerHTML)}>clear</button>                                          
+        </div>
+      
+      
+      </div></>
+  );
+}
+
+export default App;
