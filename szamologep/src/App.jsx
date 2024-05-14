@@ -1,7 +1,9 @@
+
 import logo from './logo.svg';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
+
 import { useState } from 'react';
 
 function App() {
@@ -27,6 +29,34 @@ function App() {
         eredmenybeallit(Math.pow(eredmeny,2));
         return;
       }
+
+
+
+      
+      if(ertek == 'clear'){
+        eredmenybeallit('');
+        return;
+      }
+
+      if(ertek == 'pi'){
+        eredmenybeallit(eredmeny*3.141592653589793);
+        return;
+      }
+
+      if(ertek == 'gyök'){
+        eredmenybeallit(Math.sqrt(eredmeny));
+        return;
+      }
+
+
+      if(ertek == '!'){
+        for (let i = 1; i <= ertek; i++) {
+            eredmeny *= i; 
+        }
+        eredmenybeallit(eredmeny);
+        return;
+      }
+
 
       eredmenybeallit(eredmeny.toString()+ertek.toString());
      
@@ -65,6 +95,15 @@ function App() {
               <button onClick={(event) => func(event.target.innerHTML)}>x^2</button>                                          
         </div>
       </div>
+
+
+      <div className="d-flex">
+              <button onClick={(event) => func(event.target.innerHTML)}>pi</button>
+              <button onClick={(event) => func(event.target.innerHTML)}>gyök</button>
+              <button onClick={(event) => func(event.target.innerHTML)}>!</button>
+              <button onClick={(event) => func(event.target.innerHTML)}>clear</button>                                          
+        </div>
+      
       
       </div></>
   );
